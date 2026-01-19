@@ -54,10 +54,11 @@ export default function AboutPage() {
           <div className="relative aspect-square">
              <div className="bg-[#632197]/20 rounded-[60px] absolute -right-20 -top-20 w-full h-full rotate-12 blur-3xl"></div>
              <Image 
-               src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=800" 
+               src="https://i.pinimg.com/736x/14/01/24/1401243a39921e4f1f0363bf8f137542.jpg" 
                alt="Breezecars Office"
                fill
                className="rounded-[40px] relative z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 object-cover"
+               unoptimized
              />
           </div>
         </div>

@@ -20,9 +20,9 @@ export default function Features() {
           </div>
 
           <div className="relative z-10 mt-8">
-            <button className="bg-black text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#632197] transition-all transform active:scale-95 shadow-xl">
+            <Link href="/cars" className="inline-flex items-center justify-center bg-black text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#632197] transition-all transform active:scale-95 shadow-xl">
               Unlock Inventory
-            </button>
+            </Link>
           </div>
 
           {/* Subtle Background Graphic */}
@@ -44,12 +44,12 @@ export default function Features() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 relative z-10">
-             <button className="bg-[#632197] text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-lg">
+             <Link href="/sell" className="inline-flex items-center justify-center bg-[#632197] text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-lg">
                Sell Your Car
-             </button>
-             <button className="border-2 border-white/10 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
+             </Link>
+             <Link href="/sell" className="inline-flex items-center justify-center border-2 border-white/10 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
                How it works
-             </button>
+             </Link>
           </div>
 
           {/* Professional Illustration Placement */}

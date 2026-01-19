@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -51,17 +52,18 @@ export default function Hero() {
                 <div className="flex flex-col gap-1">
                   <label className="text-[9px] font-bold text-gray-400 uppercase ml-1">Category</label>
                   <select className="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl font-bold text-sm text-gray-700 outline-none focus:border-[#632197] transition-all cursor-pointer">
-                    <option></option>
-                    <option></option>
-                    <option></option>
+                    <option>All Categories</option>
+                    <option>SUV & Crossover</option>
+                    <option>Sedan</option>
+                    <option>Sports & Coupe</option>
                   </select>
                 </div>
               </div>
 
-              <button className="w-full bg-[#1a1a1a] text-white py-4 rounded-xl font-black text-base hover:bg-[#632197] transition-all shadow-lg flex items-center justify-center gap-2 group">
-                View Inventory
+              <Link href="/cars" className="w-full bg-[#1a1a1a] text-white py-4 rounded-xl font-black text-base hover:bg-[#632197] transition-all shadow-lg flex items-center justify-center gap-2 group">
+                Find Your Dream Car
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </button>
+              </Link>
             </div>
           </div>
           
