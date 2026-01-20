@@ -122,13 +122,13 @@ export default function CarDetails({ carId }: CarDetailsProps) {
     {/* Price Section */}
     <div className="flex flex-col">
       <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">
-        Daily Rate
+        Price
       </span>
       <div className="flex items-baseline gap-1">
         <span className="text-4xl font-black text-[#632197] italic">
           ${car.price_per_day.toLocaleString()}
         </span>
-        <span className="text-gray-400 font-bold text-sm">/ Day</span>
+       
       </div>
     </div>
 
