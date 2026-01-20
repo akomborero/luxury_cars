@@ -28,8 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (session?.user) {
         setUser({ 
           email: session.user.email!, 
-          isAdmin: session.user.email === 'admin@breezecars.com',
-          fullName: session.user.user_metadata?.full_name // 3. Extract name from metadata
+          isAdmin:  session.user.user_metadata?.full_name // 3. Extract name from metadata
         });
       }
     });
@@ -38,8 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (session?.user) {
         setUser({ 
           email: session.user.email!, 
-          isAdmin: session.user.email === 'admin@breezecars.com',
-          fullName: session.user.user_metadata?.full_name
+          isAdmin: true, // Temporaril
         });
       } else {
         setUser(null);
