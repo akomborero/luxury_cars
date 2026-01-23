@@ -4,13 +4,12 @@ import Image from 'next/image';
 import { useAuth } from '../components/AuthProvider';
 import { supabase } from '../../server/supabaseClient';
 
-// 1. New Interface to replace 'any'
 interface SupabaseCar {
   id: string;
   make: string;
   model: string;
   year: number;
-  price_per_day: number;
+  price_per_day: number; // Added for type safety
   images: string[];
   mileage?: string;
   transmission?: string;
@@ -53,7 +52,6 @@ export default function AdminPage() {
   }, []);
 
   async function fetchCars() {
-    // Specify the type here <SupabaseCar[]>
     const { data, error } = await supabase
       .from('cars')
       .select('*')
@@ -62,11 +60,11 @@ export default function AdminPage() {
     if (error) {
         console.error(error);
     } else if (data) {
-        // Line 50 Fix: data is now typed
         const formattedCars: Car[] = (data as SupabaseCar[]).map((c) => ({
             id: c.id,
             name: `${c.make} ${c.model}`,
-            price: `$${c.price_per_day}/day`,
+            // REMOVED /day here
+            price: c.price_per_day.toString(), 
             year: c.year.toString(),
             imgs: c.images,
             mileage: c.mileage || '',
@@ -121,8 +119,7 @@ export default function AdminPage() {
         uploadedUrls = await Promise.all(uploadPromises);
       }
 
-      // Line 133 Fix: Explicitly defining the payload type
-      const carPayload: Partial<SupabaseCar> = {
+      const carPayload = {
         make: name.split(' ')[0] || name,
         model: name.split(' ').slice(1).join(' ') || '',
         price_per_day: parseFloat(price.replace(/[^0-9.]/g, '')),
@@ -146,7 +143,7 @@ export default function AdminPage() {
       resetForm();
       fetchCars();
     } catch (err) {
-      const error = err as Error; // Type guard for catch block
+      const error = err as Error;
       alert(error.message);
     } finally {
       setLoading(false);
@@ -201,11 +198,10 @@ export default function AdminPage() {
           <div className="md:col-span-2">
             <div className="border-2 border-dashed border-gray-300 p-8 rounded-2xl text-center bg-white hover:border-[#632197] transition-colors">
               <input type="file" multiple onChange={handleImageChange} accept="image/*" className="hidden" id="car-image-upload" />
-              <label htmlFor="car-image-upload" className="cursor-pointer text-[#632197] font-bold">Click to Upload Images</label>
+              <label htmlFor="car-image-upload" className="cursor-pointer text-[#0c0c0c] font-bold">Click to Upload Images</label>
             </div>
             <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
               {imagePreviews.map((src, i) => (
-                // Line 192 Fix: flex-shrink-0 changed to shrink-0
                 <div key={i} className="relative w-24 h-24 shrink-0 shadow-md">
                   <Image src={src} alt="preview" fill className="object-cover rounded-xl" unoptimized />
                 </div>
@@ -213,7 +209,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <button disabled={loading} type="submit" className="md:col-span-2 py-4 bg-[#632197] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#4d1975] disabled:bg-gray-400 transition-all shadow-lg active:scale-[0.98]">
+          <button disabled={loading} type="submit" className="md:col-span-2 py-4 bg-[#141414] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#4d1975] disabled:bg-gray-400 transition-all shadow-lg active:scale-[0.98]">
             {loading ? "Saving Listing..." : (editingCarId ? 'Update Listing' : 'Publish Car')}
           </button>
         </form>
@@ -221,51 +217,49 @@ export default function AdminPage() {
 
       <section>
         <h2 className="text-xl font-bold mb-4 text-black italic">Live Inventory</h2>
-       <div className="grid gap-4">
-  {cars.map((c) => (
-    <div key={c.id} className="flex flex-col sm:flex-row sm:items-center justify-between bg-white border border-gray-100 p-4 rounded-3xl shadow-sm hover:shadow-md transition-all gap-4">
-      
-      {/* Left Side: Image and Car Info */}
-      <div className="flex items-center gap-4">
-        {c.imgs?.[0] && (
-          <Image 
-            src={c.imgs[0]} 
-            alt={c.name} 
-            width={100} 
-            height={80} 
-            className="rounded-2xl object-cover shadow-sm min-w-[100px] h-[80px]" 
-            unoptimized 
-          />
-        )}
-        <div>
-          <div className="font-black text-black text-lg uppercase italic tracking-tighter leading-tight">
-            {c.name}
-          </div>
-          <div className="text-[#632197] font-black text-xl">
-            ${c.price} <span className="text-[10px] uppercase tracking-widest text-gray-400">USD</span>
-          </div>
+        <div className="grid gap-4">
+          {cars.map((c) => (
+            <div key={c.id} className="flex flex-col sm:flex-row sm:items-center justify-between bg-white border border-gray-100 p-4 rounded-3xl shadow-sm hover:shadow-md transition-all gap-4">
+              
+              <div className="flex items-center gap-4">
+                {c.imgs?.[0] && (
+                  <Image 
+                    src={c.imgs[0]} 
+                    alt={c.name} 
+                    width={100} 
+                    height={80} 
+                    className="rounded-2xl object-cover shadow-sm min-w-[100px] h-[80px]" 
+                    unoptimized 
+                  />
+                )}
+                <div>
+                  <div className="font-black text-black text-lg uppercase italic tracking-tighter leading-tight">
+                    {c.name}
+                  </div>
+                  <div className="text-[#080808] font-black text-xl">
+                    ${c.price} <span className="text-[10px] uppercase tracking-widest text-black">USD</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-row sm:flex-row gap-2 w-full sm:w-auto">
+                <button 
+                  onClick={() => startEditing(c)} 
+                  className="flex-1 sm:flex-none py-3 px-6 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-gray-700 hover:bg-gray-100 transition-all text-sm uppercase"
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => removeCar(c.id)} 
+                  className="flex-1 sm:flex-none py-3 px-6 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-100 transition-all text-sm uppercase"
+                >
+                  Delete
+                </button>
+              </div>
+
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* Right Side: Buttons (Now Responsive) */}
-      <div className="flex flex-row sm:flex-row gap-2 w-full sm:w-auto">
-        <button 
-          onClick={() => startEditing(c)} 
-          className="flex-1 sm:flex-none py-3 px-6 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-gray-700 hover:bg-gray-100 transition-all text-sm uppercase"
-        >
-          Edit
-        </button>
-        <button 
-          onClick={() => removeCar(c.id)} 
-          className="flex-1 sm:flex-none py-3 px-6 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-100 transition-all text-sm uppercase"
-        >
-          Delete
-        </button>
-      </div>
-
-    </div>
-  ))}
-</div>
       </section>
     </div>
   );

@@ -82,7 +82,7 @@ export default function CarDetails({ carId }: CarDetailsProps) {
               <button 
                 key={idx} 
                 onClick={() => setActiveImage(idx)}
-                className={`relative w-24 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${activeImage === idx ? 'border-[#632197]' : 'border-transparent'}`}
+                className={`relative w-24 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${activeImage === idx ? 'border-black' : 'border-transparent'}`}
               >
                 <Image src={img} alt="thumbnail" fill className="object-cover" unoptimized />
               </button>
@@ -93,7 +93,7 @@ export default function CarDetails({ carId }: CarDetailsProps) {
         {/* RIGHT: Info & Booking */}
         <div className="flex flex-col">
           <div className="mb-6">
-            <span className="text-[#632197] font-black uppercase tracking-widest text-sm">{car.year} Model</span>
+            <span className="text-black font-black uppercase tracking-widest text-sm">{car.year} Model</span>
             <h1 className="text-5xl font-black text-black italic uppercase tracking-tighter">
               {car.make} <span className="text-gray-400">{car.model}</span>
             </h1>
@@ -128,7 +128,7 @@ export default function CarDetails({ carId }: CarDetailsProps) {
         Price
       </span>
       <div className="flex items-baseline gap-1">
-        <span className="text-4xl font-black text-[#632197] italic">
+        <span className="text-4xl font-black text-black italic">
           ${car.price_per_day.toLocaleString()}
         </span>
        
@@ -138,7 +138,7 @@ export default function CarDetails({ carId }: CarDetailsProps) {
     {/* WhatsApp Button */}
     <button 
       onClick={handleWhatsAppDirect}
-      className="group relative flex items-center justify-center gap-3 px-10 py-5 bg-[#25D366] text-white rounded-2xl font-black uppercase tracking-tighter hover:bg-[#128C7E] transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(37,211,102,0.5)] active:scale-95 sm:w-auto w-full"
+      className="group relative flex items-center justify-center gap-3 px-10 py-5 bg-black text-white rounded-2xl font-black uppercase tracking-tighter hover:bg-gray-800 transition-all duration-300 shadow-xl active:scale-95 sm:w-auto w-full"
     >
       <svg 
         width="24" 

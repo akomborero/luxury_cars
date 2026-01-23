@@ -64,8 +64,8 @@ export default function VehicleGrid() {
         
        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
   {/* Heading */}
-  <h2 className="text-4xl md:text-5xl font-black text-gray-900 italic uppercase tracking-tighter">
-    Featured <span className="text-[#632197]">Stock</span>
+  <h2 className="text-4xl md:text-5xl font-black text-black -900 italic uppercase tracking-tighter">
+    Featured <span className="text-black">Stock</span>
   </h2>
 
   {/* Buttons Container */}
@@ -73,7 +73,7 @@ export default function VehicleGrid() {
     {user?.isAdmin && (
       <Link 
         href="/admin" 
-        className="px-6 py-3 bg-[#632197] text-white text-[11px] font-black uppercase tracking-widest rounded-full hover:bg-black hover:shadow-xl transition-all duration-300 active:scale-95 shadow-lg shadow-purple-100"
+        className="px-6 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full hover:bg-gray-800 hover:shadow-xl transition-all duration-300 active:scale-95 shadow-lg shadow-gray-300"
       >
         + Add A Car
       </Link>
@@ -124,10 +124,10 @@ export default function VehicleGrid() {
                 </div>
 
                 <div className="px-1">
-                  <h4 className="text-sm font-bold text-gray-900 truncate uppercase tracking-tight group-hover:text-[#632197] transition-colors">
+                  <h4 className="text-sm font-bold text-gray-900 truncate uppercase tracking-tight group-hover:text-black transition-colors">
                     {car.name}
                   </h4>
-                  <p className="text-[#632197] font-black text-sm mt-0.5">
+                  <p className="text-black font-black text-sm mt-0.5">
                     {car.price}
                     
                   </p>

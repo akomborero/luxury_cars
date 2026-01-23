@@ -10,7 +10,7 @@ export default function SellPage() {
       <section className="bg-gray-50 py-20 px-6 border-t border-gray-100">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-12 text-center italic uppercase tracking-tighter">
-  Frequently <span className="text-[#632197]">asked</span> questions
+  Frequently <span className="text-[#0c0c0c]">asked</span> questions
 </h2>
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm">

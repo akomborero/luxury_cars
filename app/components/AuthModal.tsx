@@ -57,7 +57,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-black placeholder:text-gray-400 outline-none focus:border-[#632197] focus:bg-white transition-all" 
+              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-black placeholder:text-gray-400 outline-none focus:border-black focus:bg-white transition-all" 
             />
           </div>
           
@@ -69,14 +69,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-black placeholder:text-gray-400 outline-none focus:border-[#632197] focus:bg-white transition-all" 
+              className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl font-bold text-black placeholder:text-gray-400 outline-none focus:border-black focus:bg-white transition-all" 
             />
           </div>
           
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-[#632197] text-white py-5 mt-4 rounded-2xl font-black uppercase tracking-widest hover:bg-[#4d1975] shadow-lg shadow-purple-200 transition-all disabled:bg-gray-400 active:scale-95"
+            className="w-full bg-black text-white py-5 mt-4 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 shadow-lg shadow-black/10 transition-all disabled:bg-gray-400 active:scale-95"
           >
             {loading ? "Verifying..." : "Sign In"}
           </button>
