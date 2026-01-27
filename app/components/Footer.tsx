@@ -23,14 +23,14 @@ export default function Footer() {
             <ul className="space-y-4 text-gray-400 font-medium">
               <li className="flex items-center gap-3 group">
                 <span className="text-white text-xl"></span>
-                <a href="tel:+263771716547" className="group-hover:text-white transition-colors underline-offset-4 hover:underline">
-                  +263 771 716 547
+                <a href="tel:+263 788907879" className="group-hover:text-white transition-colors underline-offset-4 hover:underline">
+                  +263 788907879
                 </a>
               </li>
               <li className="flex items-center gap-3 group">
                 <span className="text-white text-xl"></span>
-                <a href="mailto:breezecardealership@gmail.com" className="group-hover:text-white transition-colors break-all">
-                breezecardealership@gmail.com
+                <a href="welishamusekiwa@gmail.com" className="group-hover:text-white transition-colors break-all">
+                welishamusekiwa@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3 group">
